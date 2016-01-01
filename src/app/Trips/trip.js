@@ -122,7 +122,7 @@ var Trip = React.createClass({
     getActionRow: function() {
         if (this.props.editable) {
             return (
-                <div className="small-6 medium-2 print-hide column actions end">
+                <div className="small-6 medium-1 print-hide column actions end">
                     <button
                         className="small edit"
                         onClick={this.handleEditClick}>{getText(lang, locale, 'Edit')}</button>
@@ -216,11 +216,12 @@ var Trip = React.createClass({
             return (
                 <div className="row">
                     <div className="small-6 medium-1 print-1 column">{this.props.type}&nbsp;</div>
-                    <div className="small-6 medium-2 print-2 column">{this.props.date}&nbsp;</div>
-                    <div className="small-6 medium-1 print-1 column">{this.props.time}&nbsp;</div>
-                    <div className="small-12 medium-2 print-2 column">{this.props.client}&nbsp;</div>
-                    <div className="small-6 medium-2 print-3 column">{this.props.dep}&nbsp;</div>
-                    <div className="small-6 medium-2 print-3 column">{this.props.ret}&nbsp;</div>
+                    <div className="small-6 medium-2 print-2 column text-center">{this.props.date}&nbsp;{this.props.time}&nbsp;</div>
+                    <div className="small-12 medium-1 print-2 column">{this.props.client}&nbsp;</div>
+                    <div className="small-6 medium-2 print-2 column">{this.props.dep}&nbsp;</div>
+                    <div className="small-6 medium-2 print-2 column">{this.props.ret}&nbsp;</div>
+                    <div className="small-6 medium-1 print-1 column">&nbsp;</div>
+                    <div className="small-6 medium-2 print-2 column">&nbsp;</div>
                     {this.getActionRow()}
                 </div>
             );

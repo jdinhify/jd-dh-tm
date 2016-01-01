@@ -201,7 +201,7 @@ var TripBox = React.createClass({
     getActionsHeading: function() {
         if (this.state.editable) {
             return (
-                <div className="small-6 medium-2 print-hide column end actions">
+                <div className="small-6 medium-1 print-hide column end actions">
                     <strong>{getText(lang, locale, 'Action')}</strong>
                 </div>
             );
@@ -268,20 +268,23 @@ var TripBox = React.createClass({
                         <div className="small-6 medium-1 print-1 column">
                             <strong>{getText(lang, locale, 'Type')}</strong>
                         </div>
-                        <div className="small-6 medium-2 print-2 column">
-                            <strong>{getText(lang, locale, 'Date')}</strong>
+                        <div className="small-6 medium-2 print-2 column text-center">
+                            <strong>{getText(lang, locale, 'Date')}&nbsp;{getText(lang, locale, 'Time')}</strong>
                         </div>
-                        <div className="small-6 medium-1 print-1 column">
-                            <strong>{getText(lang, locale, 'Time')}</strong>
-                        </div>
-                        <div className="small-12 medium-2 print-2 column">
+                        <div className="small-12 medium-1 print-2 column">
                             <strong>{getText(lang, locale, 'Client')}</strong>
                         </div>
-                        <div className="small-6 medium-2 print-3 column">
+                        <div className="small-6 medium-2 print-2 column">
                             <strong>{getText(lang, locale, 'Departure')}</strong>
                         </div>
-                        <div className="small-6 medium-2 print-3 column">
+                        <div className="small-6 medium-2 print-2 column">
                             <strong>{getText(lang, locale, 'Return')}</strong>
+                        </div>
+                        <div className="small-6 medium-1 print-1 column">
+                            <strong>{getText(lang, locale, 'Cost')}</strong>
+                        </div>
+                        <div className="small-6 medium-2 print-2 column">
+                            <strong>{getText(lang, locale, 'Note')}</strong>
                         </div>
                         {this.getActionsHeading()}
                     </div>
