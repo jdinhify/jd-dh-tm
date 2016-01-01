@@ -18,7 +18,8 @@ var gulp = require('gulp'),
     eslint = require('gulp-eslint'),
     gutil = require('gulp-util'),
     _ = require('lodash'),
-    concat = require('gulp-concat');
+    concat = require('gulp-concat'),
+    htmlmin = require('gulp-htmlmin');
 
 
 var customOpts = {
@@ -153,6 +154,7 @@ gulp
                 console.error(err);
                 this.emit('end');
             })
+            .pipe(htmlmin({collapseWhitespace: true}))
             .pipe(gulp.dest(config.dest.dist));
     })
     /**
