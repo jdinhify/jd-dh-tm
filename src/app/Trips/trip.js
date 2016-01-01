@@ -119,6 +119,21 @@ var Trip = React.createClass({
         }
     },
 
+    getActionRow: function() {
+        if (this.props.editable) {
+            return (
+                <div className="small-6 medium-2 print-hide column actions end">
+                    <button
+                        className="small edit"
+                        onClick={this.handleEditClick}>{getText(lang, locale, 'Edit')}</button>
+                    <button
+                        className="small"
+                        onClick={this.handleDelete}>{getText(lang, locale, 'Delete')}</button>
+                </div>
+            );
+        }
+    },
+
     getRow: function() {
 
         if (this.state.editing) {
@@ -206,14 +221,7 @@ var Trip = React.createClass({
                     <div className="small-12 medium-2 print-2 column">{this.props.client}&nbsp;</div>
                     <div className="small-6 medium-2 print-3 column">{this.props.dep}&nbsp;</div>
                     <div className="small-6 medium-2 print-3 column">{this.props.ret}&nbsp;</div>
-                    <div className="small-6 medium-2 print-hide column actions end">
-                        <button
-                            className="small edit"
-                            onClick={this.handleEditClick}>{getText(lang, locale, 'Edit')}</button>
-                        <button
-                            className="small"
-                            onClick={this.handleDelete}>{getText(lang, locale, 'Delete')}</button>
-                    </div>
+                    {this.getActionRow()}
                 </div>
             );
         }

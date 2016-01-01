@@ -36,6 +36,7 @@ var TripList = React.createClass({
                    clients={_this.state.clients}
                    updateTrip={_this.props.updateTrip}
                    removeTrip={_this.props.removeTrip}
+                   editable={_this.props.editable}
                    />
            );
         });

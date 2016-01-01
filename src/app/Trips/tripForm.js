@@ -100,6 +100,14 @@ var TripForm = React.createClass({
         this.props.updateView(filterOptions);
     },
 
+    getNewTripForm: function() {
+        if (this.props.editable) {
+            return (
+                <NewTrip clients={this.state.clients} createNewTrip={this.props.createNewTrip}/>
+            );
+        }
+    },
+
     render: function () {
         var typeFilters = this.state.typeFilter.map(function(type){
             var key =  Object.keys(type)[0];
@@ -117,7 +125,7 @@ var TripForm = React.createClass({
         }.bind(this));
         return (
             <div className="trip-form print-hide">
-                <NewTrip clients={this.state.clients} createNewTrip={this.props.createNewTrip}/>
+                {this.getNewTripForm()}
                 <div className="trip-filter row">
                     <div className="column"><h3>{getText(lang, locale, 'Options')}</h3></div>
                     <div className="trip-filter__type">

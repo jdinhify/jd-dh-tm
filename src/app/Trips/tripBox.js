@@ -61,13 +61,26 @@ var TripBox = React.createClass({
             },
             auth: false,
             loggingIn: false,
-            view: 'View'
+            view: 'View',
+            editable: false
         };
 
     },
     componentWillMount: function(){
         if (this.firebaseRef.getAuth()) {
             this.bindAsArray(this.firebaseRef, 'trips');
+            var userRef = new Firebase('https://jd---dh-trip-manager.firebaseio.com/users/rw/' + this.firebaseRef.getAuth().uid);
+            userRef.once('value', function(snapshot){
+                if (snapshot.exists()) {
+                    this.setState({
+                        editable: true
+                    });
+                } else {
+                    this.setState({
+                        editable: false
+                    });
+                }
+            }.bind(this));
             this.setState({
                 auth: true
             });
@@ -89,7 +102,7 @@ var TripBox = React.createClass({
             _this.firebaseRef.authWithPassword({
                 email: _this.state.email,
                 password: _this.state.password
-            }, function(error){
+            }, function(error, authData){
                 _this.setState({
                     loggingIn: false
                 });
@@ -99,6 +112,18 @@ var TripBox = React.createClass({
                     });
                 } else {
                     _this.bindAsArray(_this.firebaseRef, 'trips');
+                    var userRef = new Firebase('https://jd---dh-trip-manager.firebaseio.com/users/rw/' + authData.uid);
+                    userRef.once('value', function(snapshot){
+                        if (snapshot.exists()) {
+                            _this.setState({
+                                editable: true
+                            });
+                        } else {
+                            _this.setState({
+                                editable: false
+                            });
+                        }
+                    });
                     _this.setState({
                         errorMsg: '',
                         auth: true
@@ -114,7 +139,8 @@ var TripBox = React.createClass({
         this.setState({
             auth: false,
             email: '',
-            password: ''
+            password: '',
+            editable: false
         });
     },
 
@@ -172,8 +198,17 @@ var TripBox = React.createClass({
         );
     },
 
+    getActionsHeading: function() {
+        if (this.state.editable) {
+            return (
+                <div className="small-6 medium-2 print-hide column end actions">
+                    <strong>{getText(lang, locale, 'Action')}</strong>
+                </div>
+            );
+        }
+    },
+
     render: function () {
-        console.log(this.state);
         if (!this.state.auth) {
             return (
                 <div className="login">
@@ -224,7 +259,8 @@ var TripBox = React.createClass({
                         data={this.state.trips}
                         updateView={this.updateView}
                         filterOptions={this.state.filterOptions}
-                        createNewTrip={this.createNewTrip} />
+                        createNewTrip={this.createNewTrip}
+                        editable={this.state.editable}/>
                     <hr className="print-hide"/>
                     {this.getFilterInfo()}
                     <hr />
@@ -247,15 +283,14 @@ var TripBox = React.createClass({
                         <div className="small-6 medium-2 print-3 column">
                             <strong>{getText(lang, locale, 'Return')}</strong>
                         </div>
-                        <div className="small-6 medium-2 print-hide column end actions">
-                            <strong>{getText(lang, locale, 'Action')}</strong>
-                        </div>
+                        {this.getActionsHeading()}
                     </div>
                     <TripList
                         data={this.state.trips}
                         filterOptions={this.state.filterOptions}
                         updateTrip={this.updateTrip}
-                        removeTrip={this.removeTrip}/>
+                        removeTrip={this.removeTrip}
+                        editable={this.state.editable}/>
                     <div className="row text-right print-hide logout view-show">
                         <div className="small-3 column right">
                             <button
