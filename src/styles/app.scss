@@ -1,0 +1,232 @@
+#app {
+    padding: 1em 0;
+}
+
+.trip-filter__type {
+    input[type="checkbox"] + label {
+        display: block;
+    }
+}
+
+.actions {
+    button.small {
+        padding: .5em;
+        margin-bottom: .5em;
+        margin-right: .5em;
+    }
+}
+
+.rw-numberpicker {
+    display: inline-block;
+    width: 70px;
+
+    input {
+        &.rw-input{
+            margin: 0;
+        }
+    }
+}
+
+input[type="checkbox"] {
+    visibility: hidden;
+    height: 0;
+    margin: 0;
+
+    & + label {
+        margin: 0;
+        padding: 2em;
+        background: yellow;
+    }
+
+    &:checked + label {
+        background: green;
+        color: white;
+    }
+}
+
+.typeahead {
+    position: relative;
+
+    &-tokenizer {
+        margin: 1em 0;
+    }
+
+    &-token {
+        display: inline-block;
+        padding: .5em;
+        background: grey;
+        margin: .5em .5em .5em 0;
+
+        &-close {
+            margin-left: .5em;
+            padding: .3em;
+        }
+    }
+
+
+    ul.typeahead-selector {
+        // position: absolute;
+        // z-index: 1000;
+        // width: 100%;
+        margin: 0;
+        list-style-type: none;
+        background: lighten(grey, 40%);
+
+        li {
+            a {
+                padding: 1em;
+                display: block;
+
+                &:hover {
+                    background: lighten(grey, 20%);
+                }
+            }
+        }
+    }
+}
+
+.date-picker {
+    max-height: 16.25rem;
+}
+
+.trip-list {
+    .row {
+        padding: 1em 0;
+
+        &:nth-child(odd) {
+            background: darken(white, 10%);
+            &.edit {
+                background: darken(white, 30%);
+            }
+        }
+
+        &.edit {
+            background: darken(white, 20%);
+        }
+    }
+}
+
+.trip-box {
+
+    .trip-form {
+        margin-bottom: 2rem;
+    }
+}
+
+.heading {
+    background: #007095;
+    color: #fff;
+    padding: 1rem 0;
+}
+
+.date-picker .dp-table .dp-cell.dp-value {
+    background: green;
+    color: white;
+}
+
+.btn-view {
+    background: cyan;
+    color: #000;
+
+    &:hover, &:focus {
+        background: darken(cyan, 10%);
+        color: #000;
+    }
+}
+
+.logout {
+    .column {
+        margin-top: 1rem;    
+    }
+}
+
+.filter-info {
+    > .column {
+
+        margin: .5rem 0;
+
+        span {
+            display: block;
+            padding: .5rem 0;
+            &.heading {
+                text-align: center;
+                background: darken(white, 40%);
+            }
+        }
+    }
+}
+
+/* Printing styles */
+.print {
+    .print-hide {
+        display: none;
+
+        &.view-show {
+            display: initial;
+        }
+    }
+    .heading {
+        background: #007095;
+        color: #fff;
+        padding: 1rem 0;
+    }
+
+    .trip-list {
+        .row {
+            padding: 1em 0;
+
+            &:nth-child(odd) {
+                background: darken(white, 10%)!important;
+            }
+        }
+    }
+
+    // print grid
+    @for $i from 1 through 12 {
+        .print-#{$i} {
+            width: calc((100% / 12) * #{$i});
+            // width: gridCalc($i, 12);
+        }
+    }
+
+}
+
+@media print {
+
+    .print-hide {
+        display: none!important;
+    }
+
+    .heading {
+        background: #007095!important;
+        color: #fff!important;
+        padding: 1rem 0;
+    }
+
+    .filter-info {
+        span {
+            &.heading {
+                background: darken(white, 40%)!important;
+            }
+        }
+    }
+
+    .trip-list {
+        .row {
+            padding: 1em 0;
+
+            &:nth-child(odd) {
+                background: darken(white, 10%)!important;
+            }
+        }
+    }
+
+    // print grid
+    @for $i from 1 through 12 {
+        .print-#{$i} {
+            width: calc((100% / 12) * #{$i});
+            // width: gridCalc($i, 12);
+        }
+    }
+
+}

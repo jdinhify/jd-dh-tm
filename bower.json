@@ -1,0 +1,23 @@
+{
+  "name": "jd-dh-trip-manager",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "JD"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/jdinhlife/jd-react",
+  "moduleType": [
+    "es6"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "foundation": "~5.5.3"
+  }
+}

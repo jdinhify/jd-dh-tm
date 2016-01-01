@@ -1,0 +1,18 @@
+### Node template
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependency directory
+# https://docs.npmjs.com/misc/faq#should-i-check-my-node-modules-folder-into-git
+node_modules
+### Sass template
+.sass-cache/
+*.css.map
+bower_components
+dist
+
+# Created by .ignore support plugin (hsz.mobi)
+
+.idea
