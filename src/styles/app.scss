@@ -136,7 +136,7 @@ input[type="checkbox"] {
 
 .logout {
     .column {
-        margin-top: 1rem;    
+        margin-top: 1rem;
     }
 }
 
@@ -162,7 +162,7 @@ input[type="checkbox"] {
         display: none;
 
         &.view-show {
-            display: initial;
+            display: inherit;
         }
     }
     .heading {
