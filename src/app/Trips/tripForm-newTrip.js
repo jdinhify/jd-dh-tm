@@ -206,7 +206,6 @@ var NewTrip = React.createClass({
             cost: this.state.cost
         };
         this.props.createNewTrip(newTrip);
-        console.log(newTrip);
         this.setState({
             type: '',
             date: null,

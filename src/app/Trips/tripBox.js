@@ -42,7 +42,7 @@ var TripBox = React.createClass({
         var year = (new Date()).getFullYear(),
             month = (new Date()).getMonth(),
             eMonth = (new Date(year, month + 6, 0)).getDate(),
-            sDate = month < 1 ? '01/' + (month + 12) + '/' + (year - 1) : '01/' + month + '/' + year,
+            sDate = '01/' + (month+1) + '/' + year,
             eDate = month > 7 ? eMonth + '/' + (month + 1) + '/' + year + 1 : eMonth + '/' + (month + 6) + '/' + year;
 
         return {
@@ -160,7 +160,7 @@ var TripBox = React.createClass({
                     <span className="heading">{getText(lang, locale, 'Client')}</span>
                 </div>
                 <div className="column small-4 print-4">
-                <span className="">{this.state.filterOptions.clients ? this.state.filterOptions.clients.join('; ') : '--'}</span>
+                <span className="">{(this.state.filterOptions.clients && this.state.filterOptions.clients.length > 0) ? this.state.filterOptions.clients.join('; ') : '--'}</span>
                 </div>
                 <div className="column small-2 print-2">
                     <span className="heading">{getText(lang, locale, 'Time period')}</span>
@@ -244,7 +244,7 @@ var TripBox = React.createClass({
                     <div className="row text-center">
                         <div>
                             <button
-                                onClick={this.doLogin}>{getText(lang, locale, 'Login')}</button>
+                                onClick={this.doLogin}>{getText(lang, locale, 'Login') + '' + (this.state.loggingIn ? ' ...' : '')}</button>
                         </div>
                     </div>
                 </div>
@@ -268,19 +268,22 @@ var TripBox = React.createClass({
                         <div className="small-6 medium-1 print-1 column">
                             <strong>{getText(lang, locale, 'Type')}</strong>
                         </div>
-                        <div className="small-6 medium-2 print-2 column text-center">
-                            <strong>{getText(lang, locale, 'Date')}&nbsp;{getText(lang, locale, 'Time')}</strong>
+                        <div className="small-6 medium-2 print-2 column">
+                            <strong>{getText(lang, locale, 'Date')}</strong>
+                        </div>
+                        <div className="small-6 medium-1 print-1 column">
+                            <strong>{getText(lang, locale, 'Time')}</strong>
                         </div>
                         <div className="small-12 medium-1 print-2 column">
                             <strong>{getText(lang, locale, 'Client')}</strong>
                         </div>
-                        <div className="small-6 medium-2 print-3 column">
+                        <div className="small-6 medium-2 print-2 column">
                             <strong>{getText(lang, locale, 'Departure')}</strong>
                         </div>
                         <div className="small-6 medium-2 print-2 column">
                             <strong>{getText(lang, locale, 'Return')}</strong>
                         </div>
-                        <div className="small-6 medium-2 print-2 column">
+                        <div className="small-6 medium-1 print-2 column">
                             <strong>{getText(lang, locale, 'Cost')}</strong>
                         </div>
                         {this.getActionsHeading()}

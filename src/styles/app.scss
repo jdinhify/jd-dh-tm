@@ -2,6 +2,10 @@
     padding: 1em 0;
 }
 
+body {
+    min-width: 44rem;
+}
+
 .trip-filter__type {
     input[type="checkbox"] + label {
         display: block;
@@ -202,6 +206,10 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 @media print {
+
+    body {
+        min-width: 0;
+    }
 
     .print-hide {
         display: none!important;
