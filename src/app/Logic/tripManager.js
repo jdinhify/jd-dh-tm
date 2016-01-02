@@ -72,11 +72,13 @@ var filterTrips = {
                 && dateCompare.dateCompare(sDate, trip.date) <= 0
                 && dateCompare.dateCompare(eDate, trip.date) >= 0
                 && (types.length === 0 || types.indexOf(trip.type) > -1) ) {
+                var dArr = trip.date.split('/');
+                trip.d = dArr[2] + '/' + dArr[1] + '/' + dArr[0];
                 rData = rData.concat([trip]);
             }
         });
 
-        return _.sortByOrder(rData, ['date', 'time'], ['asc', 'asc']);
+        return _.sortByOrder(rData, ['d', 'time'], ['asc', 'asc']);
     }
     /*eslint-enable complexity*/
 };

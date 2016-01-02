@@ -29,6 +29,7 @@ var TripList = React.createClass({
                    client={trip.client}
                    dep={trip.dep}
                    ret={trip.ret}
+                   cost={trip.cost}
                    //note={trip.note}
                    fkey={key}
                    key={key}

@@ -123,6 +123,9 @@ input[type="checkbox"] {
     background: green;
     color: white;
 }
+.date-picker .dp-table .dp-cell.dp-current {
+    background: #fef;
+}
 
 .btn-view {
     background: cyan;
@@ -154,6 +157,13 @@ input[type="checkbox"] {
             }
         }
     }
+}
+
+// Turn off webkit spinner on number input
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 /* Printing styles */
@@ -201,6 +211,9 @@ input[type="checkbox"] {
         background: #007095!important;
         color: #fff!important;
         padding: 1rem 0;
+        * {
+            color: #fff!important;
+        }
     }
 
     .filter-info {

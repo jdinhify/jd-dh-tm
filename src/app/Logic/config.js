@@ -41,7 +41,8 @@ var config = {
             Settings: 'Thiết lập',
             View: 'Hiển thị',
             Displaying: 'Đang hiển thị',
-            Options: 'Tuỳ chọn'
+            Options: 'Tuỳ chọn',
+            Cost: 'Giá'
         }
     },
     locale: 'vi',

@@ -27,6 +27,7 @@ var NewTrip = React.createClass({
             dep: '',
             ret: '',
             note: '',
+            cost: '',
             creating: false
         };
     },
@@ -99,12 +100,21 @@ var NewTrip = React.createClass({
                 [
                     <div
                         className="small-6 column"
+                        key="nt-cost">
+                        <input
+                            type="number"
+                            placeholder={getText(lang, locale, 'Cost')}
+                            data-type='cost'
+                            onKeyUp={this.handleInputChange} />
+                    </div>,
+                    <div
+                        className="small-6 column"
                         key="nt-dep">
                         <textarea
                             placeholder={getText(lang, locale, 'Departure')}
                             onKeyUp={this.handleInputChange}
                             data-type="dep"
-                            rows="4"/>
+                            rows="3"/>
                     </div>,
                     <div
                         className="small-6 column"
@@ -113,7 +123,7 @@ var NewTrip = React.createClass({
                             placeholder={getText(lang, locale, 'Return')}
                             onKeyUp={this.handleInputChange}
                             data-type="ret"
-                            rows="4"/>
+                            rows="3"/>
                     </div>,
                     //<div
                     //    className="small-12 medium-4 column"
@@ -192,7 +202,8 @@ var NewTrip = React.createClass({
             client: this.state.client,
             dep: this.state.dep,
             ret: this.state.ret,
-            note: this.state.note
+            note: this.state.note,
+            cost: this.state.cost
         };
         this.props.createNewTrip(newTrip);
         console.log(newTrip);
@@ -204,7 +215,8 @@ var NewTrip = React.createClass({
             client: '',
             dep: '',
             ret: '',
-            note: ''
+            note: '',
+            cost: ''
         });
     },
 

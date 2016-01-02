@@ -18,7 +18,7 @@ var TripForm = React.createClass({
     getInitialState: function () {
         return {
             clients: [],
-            filterOptions: {},
+            filterOptions: this.props.filterOptions,
             fClients: [],
             type: '',
             typeFilter: [

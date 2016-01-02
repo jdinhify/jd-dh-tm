@@ -41,9 +41,9 @@ var TripBox = React.createClass({
         this.firebaseRef = new Firebase('https://jd---dh-trip-manager.firebaseio.com/trips');
         var year = (new Date()).getFullYear(),
             month = (new Date()).getMonth(),
-            eMonth = (new Date(year, month + 1, 0)).getDate(),
-            sDate = '01/' + month + 1 + '/' + year,
-            eDate = eMonth + '/' + month + 1 + '/' + year;
+            eMonth = (new Date(year, month + 6, 0)).getDate(),
+            sDate = month < 1 ? '01/' + (month + 12) + '/' + (year - 1) : '01/' + month + '/' + year,
+            eDate = month > 7 ? eMonth + '/' + (month + 1) + '/' + year + 1 : eMonth + '/' + (month + 6) + '/' + year;
 
         return {
             trips: [],
@@ -201,7 +201,7 @@ var TripBox = React.createClass({
     getActionsHeading: function() {
         if (this.state.editable) {
             return (
-                <div className="small-6 medium-1 print-hide column end actions">
+                <div className="small-6 medium-2 print-hide column end actions">
                     <strong>{getText(lang, locale, 'Action')}</strong>
                 </div>
             );
@@ -274,17 +274,14 @@ var TripBox = React.createClass({
                         <div className="small-12 medium-1 print-2 column">
                             <strong>{getText(lang, locale, 'Client')}</strong>
                         </div>
-                        <div className="small-6 medium-2 print-2 column">
+                        <div className="small-6 medium-2 print-3 column">
                             <strong>{getText(lang, locale, 'Departure')}</strong>
                         </div>
                         <div className="small-6 medium-2 print-2 column">
                             <strong>{getText(lang, locale, 'Return')}</strong>
                         </div>
-                        <div className="small-6 medium-1 print-1 column">
-                            <strong>{getText(lang, locale, 'Cost')}</strong>
-                        </div>
                         <div className="small-6 medium-2 print-2 column">
-                            <strong>{getText(lang, locale, 'Note')}</strong>
+                            <strong>{getText(lang, locale, 'Cost')}</strong>
                         </div>
                         {this.getActionsHeading()}
                     </div>
