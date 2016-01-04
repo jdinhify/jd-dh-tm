@@ -40,6 +40,7 @@
     "watchify": "^3.4.0"
   },
   "dependencies": {
+    "babel-polyfill": "^6.3.14",
     "bluebird": "^2.10.2",
     "firebase": "^2.3.1",
     "lodash": "^3.10.1",
