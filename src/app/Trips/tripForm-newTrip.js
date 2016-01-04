@@ -99,7 +99,7 @@ var NewTrip = React.createClass({
             return (
                 [
                     <div
-                        className="small-6 column"
+                        className="small-6 medium-6 column"
                         key="nt-cost">
                         <input
                             type="number"
@@ -108,7 +108,7 @@ var NewTrip = React.createClass({
                             onKeyUp={this.handleInputChange} />
                     </div>,
                     <div
-                        className="small-6 column"
+                        className="small-6 medium-6 column"
                         key="nt-dep">
                         <textarea
                             placeholder={getText(lang, locale, 'Departure')}
@@ -117,7 +117,7 @@ var NewTrip = React.createClass({
                             rows="3"/>
                     </div>,
                     <div
-                        className="small-6 column"
+                        className="small-6 medium-6 column"
                         key="nt-ret">
                         <textarea
                             placeholder={getText(lang, locale, 'Return')}

@@ -150,28 +150,28 @@ var TripBox = React.createClass({
                 <div className="column">
                     <h4>{getText(lang, locale, 'Displaying')}</h4>
                 </div>
-                <div className="column small-2 print-2">
+                <div className="column medium-2 print-2">
                     <span className="heading">{getText(lang, locale, 'Type')}</span>
                 </div>
-                <div className="column small-4 print-4">
+                <div className="column medium-4 print-4">
                     <span className="">{TM.getTypes(this.state.filterOptions.typeFilter) ? TM.getTypes(this.state.filterOptions.typeFilter).join('; ') : '--'}</span>
                 </div>
-                <div className="column small-2 print-2">
+                <div className="column medium-2 print-2">
                     <span className="heading">{getText(lang, locale, 'Client')}</span>
                 </div>
-                <div className="column small-4 print-4">
+                <div className="column medium-4 print-4">
                 <span className="">{(this.state.filterOptions.clients && this.state.filterOptions.clients.length > 0) ? this.state.filterOptions.clients.join('; ') : '--'}</span>
                 </div>
-                <div className="column small-2 print-2">
+                <div className="column medium-2 print-2">
                     <span className="heading">{getText(lang, locale, 'Time period')}</span>
                 </div>
-                <div className="column small-2 print-2">
+                <div className="column medium-2 print-2">
                     <span className="">{this.state.filterOptions.startDate}</span>
                 </div>
-                <div className="column small-1 print-1 text-center">
+                <div className="column medium-1 print-1 text-center">
                     <span className="">{(this.state.filterOptions.endDate === this.state.filterOptions.startDate) ? '' : '-'}</span>
                 </div>
-                <div className="column small-2 left print-2">
+                <div className="column medium-2 left print-2">
                     <span className="">{(this.state.filterOptions.endDate === this.state.filterOptions.startDate) ? '' : this.state.filterOptions.endDate}</span>
                 </div>
             </div>
