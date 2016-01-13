@@ -5,7 +5,8 @@ var React = require('react'),
     numberLocalizer = require('react-widgets/lib/localizers/simple-number'),
     Typeahead = require('react-typeahead').Typeahead,  //eslint-disable-line no-unused-vars
     DatePicker = require('react-date-picker'), //eslint-disable-line no-unused-vars
-    config = require('../Logic/config');
+    config = require('../Logic/config'),
+    _ = require('lodash');
 
 numberLocalizer();
 
@@ -25,6 +26,7 @@ var Trip = React.createClass({
             dep: '',
             ret: '',
             cost: '',
+            driver: '',
             editing: false
         };
     },
@@ -40,6 +42,7 @@ var Trip = React.createClass({
             dep: this.props.dep,
             ret: this.props.ret,
             cost: this.props.cost,
+            driver: this.props.driver,
             editing: false
         });
 
@@ -66,7 +69,8 @@ var Trip = React.createClass({
     handleHourChange: function (value) {
         if (!isNaN(value)) {
             this.setState({
-                hour: value
+                hour: value,
+                time: _.padLeft(value, 2, '0') + ':' + _.padLeft(this.state.min, 2, '0')
             });
         } else {
             this.setState({
@@ -78,7 +82,8 @@ var Trip = React.createClass({
     handleMinChange: function (value) {
         if (!isNaN(value)) {
             this.setState({
-                min: value
+                min: value,
+                time: _.padLeft(this.state.hour, 2, '0') + ':' + _.padLeft(value, 2, '0')
             });
         } else {
             this.setState({
@@ -95,6 +100,18 @@ var Trip = React.createClass({
         } else {
             this.setState({
                 client: obj.target.value
+            });
+        }
+    },
+
+    handleDriverChange: function(obj) {
+        if (typeof(obj) === 'string') {
+            this.setState({
+                driver: obj
+            });
+        } else {
+            this.setState({
+                driver: obj.target.value
             });
         }
     },
@@ -179,13 +196,22 @@ var Trip = React.createClass({
                     <div className="small-12 medium-3 column">
                         <Typeahead
                             value={this.state.client}
-                            placeholder="Client"
+                            placeholder={getText(lang, locale, 'Client')}
                             options={this.props.clients}
                             onOptionSelected={this.handleClientChange}
                             onChange={this.handleClientChange}
                             data-type="client" />
                     </div>
-                    <div className="small-6 column">
+                    <div className="small-12 medium-3 column">
+                        <Typeahead
+                            value={this.state.driver}
+                            placeholder={getText(lang, locale, 'Driver')}
+                            options={this.props.drivers}
+                            onOptionSelected={this.handleDriverChange}
+                            onChange={this.handleDriverChange}
+                            data-type="driver" />
+                    </div>
+                    <div className="medium-3 column">
                         <input
                             type="number"
                             placeholder={getText(lang, locale, 'Cost')}
@@ -193,7 +219,7 @@ var Trip = React.createClass({
                             onChange={this.handleInputChange}
                             value={this.state.cost}/>
                     </div>
-                    <div className="small-6 column">
+                    <div className="medium-6 column">
                         <textarea
                             placeholder={getText(lang, locale, 'Departure')}
                             onChange={this.handleInputChange}
@@ -201,7 +227,7 @@ var Trip = React.createClass({
                             value={this.state.dep}
                             rows="3"/>
                     </div>
-                    <div className="small-6 column">
+                    <div className="medium-6 column">
                         <textarea
                             placeholder={getText(lang, locale, 'Return')}
                             onChange={this.handleInputChange}
@@ -226,11 +252,12 @@ var Trip = React.createClass({
             return (
                 <div className="row">
                     <div className="small-6 medium-1 print-1 column">{this.props.type}&nbsp;</div>
-                    <div className="small-6 medium-2 print-2 column">{this.props.date}&nbsp;</div>
-                    <div className="small-6 medium-1 print-1 column">{this.props.time}&nbsp;</div>
-                    <div className="small-12 medium-1 print-2 column">{this.props.client}&nbsp;</div>
+                    <div className="small-6 medium-1 print-2 column">{this.props.date}&nbsp;</div>
+                    <div className="small-6 medium-1 print-1 column text-right print-text-left">{this.props.time}&nbsp;</div>
+                    <div className="small-12 medium-1 print-1 column">{this.props.client}&nbsp;</div>
                     <div className="small-6 medium-2 print-2 column">{this.props.dep}&nbsp;</div>
                     <div className="small-6 medium-2 print-2 column">{this.props.ret}&nbsp;</div>
+                    <div className="small-6 medium-1 print-1 column">{this.props.driver}&nbsp;</div>
                     <div className="small-6 medium-1 print-2 column">{this.props.cost ? this.props.cost.split('').reverse().join('').match(/.{1,3}/g).join('.').split('').reverse().join('') : ''}&nbsp;</div>
                     {this.getActionRow()}
                 </div>

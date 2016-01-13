@@ -183,13 +183,21 @@ input[type="checkbox"] {
 
         margin: .5rem 0;
 
-        span {
+        > span {
             display: block;
             padding: .5rem 0;
             &.heading {
                 text-align: center;
                 background: darken(white, 40%);
             }
+        }
+
+        > p {
+            padding: .5rem 0;
+        }
+
+        .separator {
+            padding: 0 1rem;
         }
     }
 }
@@ -209,6 +217,10 @@ input[type=number]::-webkit-outer-spin-button {
         &.view-show {
             display: inherit;
         }
+    }
+
+    .print-text-left {
+        text-align: left;
     }
     .heading {
         background: #007095;
@@ -315,12 +327,12 @@ textarea[rows] {
     height: auto;
 }
 
-.text-left    { text-align: left !important; }
-.text-right   { text-align: right !important; }
-.text-center  { text-align: center !important; }
-.text-justify { text-align: justify !important; }
-.left         { float: left !important; }
-.right         { float: right !important; }
+.text-left    { text-align: left; }
+.text-right   { text-align: right; }
+.text-center  { text-align: center; }
+.text-justify { text-align: justify; }
+.left         { float: left; }
+.right         { float: right; }
 
 @media print {
 
@@ -330,6 +342,10 @@ textarea[rows] {
 
     .print-hide {
         display: none!important;
+    }
+
+    .print-text-left {
+        text-align: left !important;
     }
 
     .heading {

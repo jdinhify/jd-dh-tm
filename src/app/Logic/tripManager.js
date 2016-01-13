@@ -43,6 +43,21 @@ var getClients = {
 };
 
 /**
+ * getDrivers
+ * get a list of driver names (unique)
+ * @param data
+ * @returns {Array}
+ */
+var getDrivers = {
+    getDrivers: function(data){
+        var drivers = data.map(function(trip){
+            return trip.driver;
+        });
+        return _.uniq(drivers).filter(function(n){ return n !== undefined; });
+    }
+};
+
+/**
  * Filter
  * @param {Array} data
  * @param {Object} options
@@ -57,6 +72,7 @@ var filterTrips = {
 
         var rData = [],
             clients = options.clients || '',
+            drivers = options.drivers || '',
             sDate = options.startDate,
             eDate = options.endDate,
             types = [];
@@ -69,6 +85,7 @@ var filterTrips = {
         }
         data.map(function (trip) {
             if ( (clients.length === 0 || clients.indexOf(trip.client) > -1)
+                && (drivers.length === 0 || drivers.indexOf(trip.driver) > -1)
                 && dateCompare.dateCompare(sDate, trip.date) <= 0
                 && dateCompare.dateCompare(eDate, trip.date) >= 0
                 && (types.length === 0 || types.indexOf(trip.type) > -1) ) {
@@ -103,5 +120,5 @@ var getTypes = {
     }
 };
 
-var TripManager = Object.assign({}, dateCompare, getClients, filterTrips, tripSort, getTypes);
+var TripManager = Object.assign({}, dateCompare, getDrivers, getClients, filterTrips, tripSort, getTypes);
 module.exports = TripManager;

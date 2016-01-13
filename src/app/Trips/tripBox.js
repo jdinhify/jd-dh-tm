@@ -23,7 +23,7 @@ var TripBox = React.createClass({
     },
 
     createNewTrip: function(trip){
-        this.firebaseRef.push(trip);
+        return Promise.resolve(this.firebaseRef.push(trip));
     },
 
     updateTrip: function(key, trip) {
@@ -165,14 +165,18 @@ var TripBox = React.createClass({
                 <div className="column medium-2 print-2">
                     <span className="heading">{getText(lang, locale, 'Time period')}</span>
                 </div>
+                <div className="column no-block-span medium-4 print-4">
+                    <p>
+                        <span className="">{this.state.filterOptions.startDate}</span>
+                        <span className="separator">{(this.state.filterOptions.endDate === this.state.filterOptions.startDate) ? '' : '-'}</span>
+                        <span className="">{(this.state.filterOptions.endDate === this.state.filterOptions.startDate) ? '' : this.state.filterOptions.endDate}</span>
+                    </p>
+                </div>
                 <div className="column medium-2 print-2">
-                    <span className="">{this.state.filterOptions.startDate}</span>
+                    <span className="heading">{getText(lang, locale, 'Driver')}</span>
                 </div>
-                <div className="column medium-1 print-1 text-center">
-                    <span className="">{(this.state.filterOptions.endDate === this.state.filterOptions.startDate) ? '' : '-'}</span>
-                </div>
-                <div className="column medium-2 left print-2">
-                    <span className="">{(this.state.filterOptions.endDate === this.state.filterOptions.startDate) ? '' : this.state.filterOptions.endDate}</span>
+                <div className="column medium-2 print-2 left">
+                    <span className="">{(this.state.filterOptions.drivers && this.state.filterOptions.drivers.length > 0) ? this.state.filterOptions.drivers.join('; ') : '--'}</span>
                 </div>
             </div>
         );
@@ -268,20 +272,23 @@ var TripBox = React.createClass({
                         <div className="small-6 medium-1 print-1 column">
                             <strong>{getText(lang, locale, 'Type')}</strong>
                         </div>
-                        <div className="small-6 medium-2 print-2 column">
+                        <div className="small-6 medium-1 print-2 column">
                             <strong>{getText(lang, locale, 'Date')}</strong>
                         </div>
-                        <div className="small-6 medium-1 print-1 column">
+                        <div className="small-6 medium-1 print-1 column text-center print-text-left">
                             <strong>{getText(lang, locale, 'Time')}</strong>
                         </div>
-                        <div className="small-12 medium-1 print-2 column">
+                        <div className="small-12 medium-1 print-1 column">
                             <strong>{getText(lang, locale, 'Client')}</strong>
                         </div>
                         <div className="small-6 medium-2 print-2 column">
                             <strong>{getText(lang, locale, 'Departure')}</strong>
                         </div>
-                        <div className="small-6 medium-2 print-2 column">
+                        <div className="small-6 medium-1 print-2 column">
                             <strong>{getText(lang, locale, 'Return')}</strong>
+                        </div>
+                        <div className="small-6 medium-2 print-1 column">
+                            <strong>{getText(lang, locale, 'Driver')}</strong>
                         </div>
                         <div className="small-6 medium-1 print-2 column">
                             <strong>{getText(lang, locale, 'Cost')}</strong>

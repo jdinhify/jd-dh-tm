@@ -8,13 +8,15 @@ var TripList = React.createClass({
 
     getInitialState: function() {
         return {
-            clients: []
+            clients: [],
+            drivers: []
         };
     },
 
     componentWillReceiveProps: function() {
         this.setState({
-            clients: TM.getClients(this.props.data)
+            clients: TM.getClients(this.props.data),
+            drivers: TM.getDrivers(this.props.data)
         });
     },
 
@@ -27,6 +29,7 @@ var TripList = React.createClass({
                    date={trip.date}
                    time={trip.time}
                    client={trip.client}
+                   driver={trip.driver}
                    dep={trip.dep}
                    ret={trip.ret}
                    cost={trip.cost}
@@ -34,6 +37,7 @@ var TripList = React.createClass({
                    fkey={key}
                    key={key}
                    type={trip.type}
+                   drivers={_this.state.drivers}
                    clients={_this.state.clients}
                    updateTrip={_this.props.updateTrip}
                    removeTrip={_this.props.removeTrip}

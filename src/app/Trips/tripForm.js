@@ -18,8 +18,10 @@ var TripForm = React.createClass({
     getInitialState: function () {
         return {
             clients: [],
+            drivers: [],
             filterOptions: this.props.filterOptions,
             fClients: [],
+            fDrivers: [],
             type: '',
             typeFilter: [
                 {
@@ -34,16 +36,19 @@ var TripForm = React.createClass({
 
     componentWillReceiveProps: function () {
         var filterOptions = this.props.filterOptions,
-            fClients = filterOptions.clients || [];
+            fClients = filterOptions.clients || [],
+            fDrivers = filterOptions.drivers || [];
 
         this.setState({
             filterOptions: filterOptions,
             fClients: fClients,
-            clients: TM.getClients(this.props.data)
+            fDrivers: fDrivers,
+            clients: TM.getClients(this.props.data),
+            drivers: TM.getDrivers(this.props.data)
         });
     },
 
-    handleTokenAdd: function (token) {
+    handleClientsTokenAdd: function (token) {
         var fClients = this.state.fClients,
             filterOptions = this.state.filterOptions;
         fClients = fClients.concat([token]);
@@ -51,11 +56,27 @@ var TripForm = React.createClass({
         this.props.updateView(filterOptions);
     },
 
-    handleTokenRemove: function (token) {
+    handleClientsTokenRemove: function (token) {
         var fClients = this.state.fClients,
             filterOptions = this.state.filterOptions;
         fClients.splice(fClients.indexOf(token), 1);
         filterOptions.clients = fClients;
+        this.props.updateView(filterOptions);
+    },
+
+    handleDriversTokenAdd: function (token) {
+        var fDrivers = this.state.fDrivers,
+            filterOptions = this.state.filterOptions;
+        fDrivers = fDrivers.concat([token]);
+        filterOptions.drivers = fDrivers;
+        this.props.updateView(filterOptions);
+    },
+
+    handleDriversTokenRemove: function (token) {
+        var fDrivers = this.state.fDrivers,
+            filterOptions = this.state.filterOptions;
+        fDrivers.splice(fDrivers.indexOf(token), 1);
+        filterOptions.drivers = fDrivers;
         this.props.updateView(filterOptions);
     },
 
@@ -103,7 +124,10 @@ var TripForm = React.createClass({
     getNewTripForm: function() {
         if (this.props.editable) {
             return (
-                <NewTrip clients={this.state.clients} createNewTrip={this.props.createNewTrip}/>
+                <NewTrip
+                    clients={this.state.clients}
+                    drivers={this.state.drivers}
+                    createNewTrip={this.props.createNewTrip}/>
             );
         }
     },
@@ -131,13 +155,23 @@ var TripForm = React.createClass({
                     <div className="trip-filter__type">
                         {typeFilters}
                     </div>
-                    <div className="trip-filter__client column">
-                        <Tokenizer
-                            options={this.state.clients}
-                            onTokenAdd={this.handleTokenAdd}
-                            onTokenRemove={this.handleTokenRemove}
-                            placeholder={getText(lang, locale, 'Client')}
-                        />
+                    <div className="row">
+                        <div className="trip-filter__client column medium-6">
+                            <Tokenizer
+                                options={this.state.clients}
+                                onTokenAdd={this.handleClientsTokenAdd}
+                                onTokenRemove={this.handleClientsTokenRemove}
+                                placeholder={getText(lang, locale, 'Client')}
+                            />
+                        </div>
+                        <div className="trip-filter__driver medium-6 column">
+                            <Tokenizer
+                                options={this.state.drivers}
+                                onTokenAdd={this.handleDriversTokenAdd}
+                                onTokenRemove={this.handleDriversTokenRemove}
+                                placeholder={getText(lang, locale, 'Driver')}
+                            />
+                        </div>
                     </div>
                     <div className="trip-filter__date">
                         <div className="trip-filter__sDate medium-6 column">

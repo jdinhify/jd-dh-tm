@@ -42,7 +42,8 @@ var config = {
             View: 'Hiển thị',
             Displaying: 'Đang hiển thị',
             Options: 'Tuỳ chọn',
-            Cost: 'Giá'
+            Cost: 'Tiền',
+            Driver: 'Lái xe'
         }
     },
     locale: 'vi',

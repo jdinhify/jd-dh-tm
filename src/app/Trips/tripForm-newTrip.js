@@ -28,6 +28,7 @@ var NewTrip = React.createClass({
             ret: '',
             note: '',
             cost: '',
+            driver: '',
             creating: false
         };
     },
@@ -99,7 +100,18 @@ var NewTrip = React.createClass({
             return (
                 [
                     <div
-                        className="small-6 medium-6 column"
+                        className="small-12 medium-3 column"
+                        key="nt-driver">
+                        <Typeahead
+                            value={this.state.driver}
+                            placeholder={getText(lang, locale, 'Driver')}
+                            options={this.props.drivers}
+                            onOptionSelected={this.handleDriverChange}
+                            onKeyUp={this.handleDriverChange}
+                            data-type="driver"/>
+                    </div>,
+                    <div
+                        className="small-6 medium-3 column"
                         key="nt-cost">
                         <input
                             type="number"
@@ -194,7 +206,20 @@ var NewTrip = React.createClass({
         }
     },
 
+    handleDriverChange: function(obj) {
+        if (typeof(obj) === 'string') {
+            this.setState({
+                driver: obj
+            });
+        } else {
+            this.setState({
+                driver: obj.target.value
+            });
+        }
+    },
+
     createNewTrip: function(){
+        var _this = this;
         var newTrip = {
             type: this.state.type,
             date: this.state.date,
@@ -203,20 +228,25 @@ var NewTrip = React.createClass({
             dep: this.state.dep,
             ret: this.state.ret,
             note: this.state.note,
-            cost: this.state.cost
+            cost: this.state.cost,
+            driver: this.state.driver
         };
-        this.props.createNewTrip(newTrip);
-        this.setState({
-            type: '',
-            date: null,
-            hour: NaN,
-            min: NaN,
-            client: '',
-            dep: '',
-            ret: '',
-            note: '',
-            cost: ''
-        });
+        this.props.createNewTrip(newTrip)
+            .then(function() {
+                _this.setState({
+                    type: '',
+                    date: null,
+                    hour: NaN,
+                    min: NaN,
+                    client: '',
+                    dep: '',
+                    ret: '',
+                    note: '',
+                    cost: '',
+                    driver: '',
+                    creating: false
+                });
+            });
     },
 
     toggleCreating: function() {
