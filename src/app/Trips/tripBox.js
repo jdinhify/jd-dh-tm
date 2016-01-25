@@ -226,7 +226,7 @@ var TripBox = React.createClass({
                         <div className="small-9 columns end">
                             <input
                                 value={this.state.email}
-                                type="text"
+                                type="email"
                                 placeholder="example@email.com"
                                 name="email"
                                 onChange={this.loginDetailChanged}/>

@@ -42,7 +42,7 @@ var Trip = React.createClass({
             dep: this.props.dep,
             ret: this.props.ret,
             cost: this.props.cost,
-            driver: this.props.driver,
+            driver: this.props.driver || '',
             editing: false
         });
 
