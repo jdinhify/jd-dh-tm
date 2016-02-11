@@ -284,10 +284,10 @@ var TripBox = React.createClass({
                         <div className="small-6 medium-2 print-2 column">
                             <strong>{getText(lang, locale, 'Departure')}</strong>
                         </div>
-                        <div className="small-6 medium-1 print-2 column">
+                        <div className="small-6 medium-2 print-2 column">
                             <strong>{getText(lang, locale, 'Return')}</strong>
                         </div>
-                        <div className="small-6 medium-2 print-1 column">
+                        <div className="small-6 medium-1 print-1 column">
                             <strong>{getText(lang, locale, 'Driver')}</strong>
                         </div>
                         <div className="small-6 medium-1 print-2 column">

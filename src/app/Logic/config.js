@@ -21,7 +21,7 @@ var config = {
             Save: 'Lưu',
             Delete: 'Xoá',
             Cancel: 'Huỷ',
-            Client: 'Khách',
+            Client: 'Đối tác',
             Type: 'Loại',
             Date: 'Ngày',
             Time: 'Giờ',

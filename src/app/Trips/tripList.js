@@ -2,6 +2,7 @@
 
 var React = require('react'),
     TM = require('../Logic/tripManager.js'),
+    _ = require('lodash'),
     Trip = require('./trip.js'); // eslint-disable-line no-unused-vars
 
 var TripList = React.createClass({
@@ -22,7 +23,8 @@ var TripList = React.createClass({
 
     render: function() {
         var _this = this;
-        var trips = TM.filterTrips(this.props.data, this.props.filterOptions).map(function(trip){
+        var filteredTrips = TM.filterTrips(this.props.data, this.props.filterOptions);
+        var trips = filteredTrips.map(function(trip){
             var key = trip['.key'];
             return (
                <Trip
@@ -45,10 +47,27 @@ var TripList = React.createClass({
                    />
            );
         });
+        var totalCost = _.reduce(filteredTrips.map(function(trip){
+            return trip.cost || 0;
+        }), function( sum, n ){
+            return sum + parseInt(n, 10);
+        }, 0);
 
         return (
             <div className="trip-list">
                 {trips}
+                <div className="row">
+                    <div className="small-6 medium-1 print-1 column">&nbsp;</div>
+                    <div className="small-6 medium-1 print-2 column">&nbsp;</div>
+                    <div className="small-6 medium-1 print-1 column text-right print-text-left">&nbsp;</div>
+                    <div className="small-12 medium-1 print-1 column">&nbsp;</div>
+                    <div className="small-6 medium-2 print-2 column">&nbsp;</div>
+                    <div className="small-6 medium-2 print-2 column">&nbsp;</div>
+                    <div className="small-6 medium-1 print-1 column">&nbsp;</div>
+                    <div className="column medium-1 print-2">
+                        {totalCost ? ('' + totalCost).split('').reverse().join('').match(/.{1,3}/g).join('.').split('').reverse().join('') : ''}&nbsp;
+                    </div>
+                </div>
             </div>
         );
     }
