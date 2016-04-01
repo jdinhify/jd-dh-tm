@@ -56,6 +56,9 @@ var TripBox = React.createClass({
                     },
                     {
                         '16s': true
+                    },
+                    {
+                        '17s': true
                     }
                 ]
             },

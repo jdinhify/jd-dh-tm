@@ -29,6 +29,9 @@ var TripForm = React.createClass({
                 },
                 {
                     '16s': true
+                },
+                {
+                    '17s': true
                 }
             ]
         };
@@ -136,7 +139,7 @@ var TripForm = React.createClass({
         var typeFilters = this.state.typeFilter.map(function(type){
             var key =  Object.keys(type)[0];
             return (
-                <div className="medium-6 column" key={key}>
+                <div className="medium-4 column" key={key}>
                     <input
                         type="checkbox"
                         id={'typeFilter-' + key}
