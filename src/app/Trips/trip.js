@@ -168,7 +168,7 @@ var Trip = React.createClass({
                             <option value="">{getText(lang, locale, 'Type')}</option>
                             <option value="7s">{getText(lang, locale, '7s')}</option>
                             <option value="16s">{getText(lang, locale, '16s')}</option>
-                            <option value="17s">{getText(lang, locale, '17s')}</option>
+                            <option value="16s2">{getText(lang, locale, '16s2')}</option>
                         </select>
                     </div>
                     <div className="small-6 medium-5 column">

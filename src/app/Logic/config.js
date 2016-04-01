@@ -30,7 +30,7 @@ var config = {
             Action: 'Thao tác',
             '7s': '7 chỗ',
             '16s': '16 chỗ 1',
-            '17s': '16 chỗ 2',
+            '16s2': '16 chỗ 2',
             hour: 'giờ',
             min: 'phút',
             Create: 'Tạo',

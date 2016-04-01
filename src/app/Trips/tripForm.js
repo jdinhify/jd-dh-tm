@@ -31,7 +31,7 @@ var TripForm = React.createClass({
                     '16s': true
                 },
                 {
-                    '17s': true
+                    '16s2': true
                 }
             ]
         };
