@@ -236,12 +236,12 @@ var Trip = React.createClass({
                             value={this.state.ret}
                             rows="3"/>
                     </div>
-                    <div className="small-6 column actions end">
+                    <div className="small-6 medium-6 column actions">
                         <button
                             className="small save"
                             onClick={this.handleSave}>{getText(lang, locale, 'Save')}</button>
                         <button
-                            className="small delete"
+                            className="small delete right"
                             onClick={this.handleDelete}>{getText(lang, locale, 'Delete')}</button>
                         <button
                             className="small cancel"

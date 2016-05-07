@@ -64,7 +64,7 @@ var TripList = React.createClass({
                     <div className="small-6 medium-2 print-2 column">&nbsp;</div>
                     <div className="small-6 medium-2 print-2 column">&nbsp;</div>
                     <div className="small-6 medium-1 print-1 column">&nbsp;</div>
-                    <div className="column medium-1 print-2">
+                    <div className="column medium-2 print-2">
                         {totalCost ? ('' + totalCost).split('').reverse().join('').match(/.{1,3}/g).join('.').split('').reverse().join('') : ''}&nbsp;
                     </div>
                 </div>

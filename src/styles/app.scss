@@ -268,9 +268,9 @@ input[type=number]::-webkit-outer-spin-button {
     padding-left: 0.9375rem;
     padding-right: 0.9375rem;
 }
-.column + .column:last-child, .columns + .column:last-child, .column + .columns:last-child, .columns + .columns:last-child {
-    float: right;
-}
+// .column + .column:last-child, .columns + .column:last-child, .column + .columns:last-child, .columns + .columns:last-child {
+//     float: right;
+// }
 
 @for $i from 1 through 12 {
     .medium-#{$i} {
