@@ -41,9 +41,8 @@ var TripBox = React.createClass({
         this.firebaseRef = new Firebase('https://jd---dh-trip-manager.firebaseio.com/trips');
         var year = (new Date()).getFullYear(),
             month = (new Date()).getMonth(),
-            eMonth = (new Date(year, month + 6, 0)).getDate(),
-            sDate = '01/' + (month+1) + '/' + year,
-            eDate = month > 7 ? eMonth + '/' + (month + 1) + '/' + year + 1 : eMonth + '/' + (month + 6) + '/' + year;
+            sDate = '01/' + (month + 1) + '/' + year,
+            eDate = (new Date(year, month + 1, 0)).getDate() + '/' + (month + 1) + '/' + year;
 
         return {
             trips: [],

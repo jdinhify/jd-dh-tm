@@ -4,7 +4,6 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "deploy": "npm run clean && npm run build-prod && aws s3 sync dist/ s3://apps-jdinh-life/apps/tm/",
     "build": "gulp build",
     "build-prod": "gulp build-prod",
     "clean": "gulp clean",
